@@ -68,6 +68,8 @@ h1 {
 }
 h1 em { font-style: normal; color: var(--indigo); }
 .date-line { font-family: var(--display); font-size: 17px; color: var(--ink); }
+.dday-row { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.baby { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--indigo); }
 .dday {
   font-size: 13px; color: var(--indigo); border: 1px solid var(--indigo);
   border-radius: 999px; padding: 2px 12px; font-variant-numeric: tabular-nums;
@@ -199,11 +201,15 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
     <div class="eyebrow">아버지의 일흔 번째 생신</div>
     <h1><em>조근희</em> 님의<br>칠순을 축하합니다</h1>
     <div class="date-line">2026년 10월 31일 토요일</div>
-    <div class="dday" id="dday">10월 31일</div>
+    <div class="dday-row">
+      <img class="baby" src="baby-smile.jpg" alt="막내 웃는 얼굴">
+      <img class="baby" src="baby-cry.jpg" alt="막내 우는 얼굴">
+      <div class="dday" id="dday">10월 31일</div>
+    </div>
   </header>
 
   <figure class="photo">
-    <img src="family.jpg" alt="아빠와 엄마, 네 남매 가족과 손주들이 손으로 하트를 만들며 함께 찍은 가족사진. 양쪽 아래에 막내의 웃는 얼굴과 우는 얼굴이 동그랗게 들어 있어요">
+    <img src="family.jpg" alt="아빠와 엄마, 네 남매 가족과 손주들이 손으로 하트를 만들며 함께 찍은 가족사진">
     <figcaption>우리 가족, 2025년 가을</figcaption>
   </figure>
 
