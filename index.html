@@ -124,6 +124,37 @@ h2 {
 
 hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
 a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-radius: 2px; }
+/* 펼쳐 보기 */
+.stop details { margin-top: 2px; }
+.stop summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 17px; padding: 2px 0; }
+.stop summary::-webkit-details-marker { display: none; }
+.stop summary .chev { font-size: 12px; color: var(--indigo); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; white-space: nowrap; }
+.stop summary .chev::after { content: "자세히 ▾"; }
+.stop details[open] summary .chev::after { content: "접기 ▴"; }
+.stop summary:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 4px; }
+.panel { margin: 12px 0 8px; padding: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; display: flex; flex-direction: column; gap: 16px; font-size: 15px; line-height: 1.7; }
+.panel h3 { margin: 0 0 6px; font-size: 13px; letter-spacing: .08em; color: var(--indigo); font-weight: 700; }
+.panel p { margin: 0; }
+.panel ul { margin: 0; padding-left: 18px; }
+.panel li { margin: 2px 0; }
+.panel img { width: 100%; max-width: 100%; display: block; border-radius: 6px; }
+.panel .cap { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 0; }
+.kv dt { color: var(--muted); white-space: nowrap; }
+.kv dd { margin: 0; min-width: 0; }
+.panel .menu { list-style: none; padding: 0; margin: 0; }
+.menu li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; margin: 0; border-bottom: 1px dashed var(--line); }
+.menu li:last-child { border-bottom: 0; }
+.menu .amt { color: var(--muted); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.panel .course { list-style: none; padding: 0; margin: 0; counter-reset: c; }
+.course li { counter-increment: c; display: grid; grid-template-columns: 26px 1fr; gap: 8px; padding: 4px 0; margin: 0; }
+.course li::before { content: counter(c); font-size: 12px; color: var(--indigo); border: 1px solid var(--line); border-radius: 50%; width: 22px; height: 22px; display: grid; place-items: center; margin-top: 2px; }
+.small { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { display: inline-block; font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--indigo); color: var(--indigo); text-decoration: none; }
+.btn:hover { background: var(--indigo); color: var(--card); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { font-size: 13px; padding: 2px 10px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
 </style>
 
 </head>
@@ -154,14 +185,15 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
       <dt>일시</dt>
       <dd>2026년 10월 31일 (토) 저녁<br><span class="tbd">시간은 추후 안내</span></dd>
       <dt>장소</dt>
-      <dd>서울 · 식당 미정<br><span class="tbd">확정되면 다시 알려 드릴게요</span></dd>
+      <dd>삼원가든 별채<br><span class="tbd">서울 강남구 언주로 833 1층</span></dd>
       <dt>숙소</dt>
-      <dd>DH퍼스티어 게스트하우스 (1박)</dd>
+      <dd>THE H 퍼스티어 아이파크 게스트하우스<br><span class="tbd">4호실 스파룸 · 1박</span></dd>
     </dl>
   </section>
 
   <section>
     <h2>주요 일정</h2>
+    <p class="small" style="text-align:center;margin:-6px 0 18px">장소 이름을 누르면 자세한 안내가 펼쳐져요</p>
 
     <div class="day">
       <div class="day-head"><strong>첫째 날</strong><span>10월 31일 토요일</span></div>
@@ -169,16 +201,81 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
         <li class="stop first">
           <div class="dot"></div>
           <div class="body">
-            <div class="when">저녁</div>
-            <div class="what"><a href="https://map.naver.com/p/search/%EC%82%BC%EC%9B%90%EA%B0%80%EB%93%A0" target="_blank" rel="noopener">삼원가든 별채</a><span class="tag">예정</span></div>
+            <div class="when">저녁 · 칠순 축하 식사</div>
+            <details>
+              <summary><span>삼원가든 별채</span><span class="chev" aria-hidden="true"></span></summary>
+              <div class="panel">
+                <dl class="kv">
+                  <dt>주소</dt><dd>서울 강남구 언주로 833 1층</dd>
+                  <dt>예약실</dt><dd>02-6670-3601</dd>
+                  <dt>공간</dt><dd>4~24인 프라이빗 다이닝룸</dd>
+                </dl>
+
+                <div>
+                  <h3>어른 · 저녁 잔칫상 코스</h3>
+                  <ol class="course">
+                    <li><span>제철 식재료로 차린 전통 한식 요리</span></li>
+                    <li><span>삼원가든 특허 갈비</span></li>
+                    <li><span>최상급 한우 구이</span></li>
+                    <li><span>삼원가든 시그니처 한식 메뉴</span></li>
+                    <li><span>정갈한 식사와 후식</span></li>
+                  </ol>
+                  <p class="small">별채 저녁 코스 공식 소개 기준이에요. 세부 요리는 예약할 때 다시 알려 드릴게요.</p>
+                </div>
+
+                <div>
+                  <h3>아이들 · 구이 메뉴</h3>
+                  <ul class="menu">
+                    <li><span>삼원 전통 양념갈비</span><span class="amt">200g</span></li>
+                    <li><span>한우 양념갈비</span><span class="amt">150g</span></li>
+                    <li><span>생갈비 꽃살</span><span class="amt">120g</span></li>
+                    <li><span>한우 생갈비</span><span class="amt">200g</span></li>
+                  </ul>
+                  <p class="small">삼원가든 본점 메뉴 기준이에요.</p>
+                </div>
+
+                <div class="links">
+                  <a class="btn" href="https://naver.me/5mhw3BDZ" target="_blank" rel="noopener">네이버 지도 보기</a>
+                </div>
+              </div>
+            </details>
           </div>
         </li>
         <li class="move" aria-label="차로 약 15분 이동"><div class="rail"></div><div class="txt">차로 약 15분</div></li>
         <li class="stop">
           <div class="dot"></div>
           <div class="body">
-            <div class="when">숙박</div>
-            <div class="what">DH퍼스티어 게스트하우스</div>
+            <div class="when">숙박 · 스파룸</div>
+            <details>
+              <summary><span>THE H 퍼스티어 아이파크 게스트하우스</span><span class="chev" aria-hidden="true"></span></summary>
+              <div class="panel">
+                <figure style="margin:0">
+                  <img src="room.jpg" alt="4호실 스파룸: 퀸 침대가 있는 침실, 유리문 안쪽 스파와 곡선 소파, TV가 걸린 거실">
+                  <figcaption class="cap">4호실 스파룸 · 침실, 스파, 거실</figcaption>
+                </figure>
+                <dl class="kv">
+                  <dt>위치</dt><dd>THE H 퍼스티어 아이파크 1획지 121동 1층</dd>
+                  <dt>객실</dt><dd>4호실 스파룸 (28평)</dd>
+                  <dt>체크인</dt><dd>오후 4시</dd>
+                  <dt>체크아웃</dt><dd>오전 11시</dd>
+                </dl>
+                <div>
+                  <h3>객실 구성</h3>
+                  <ul>
+                    <li>침대방 1 (퀸 침대 1개)</li>
+                    <li>거실 1 · 소파 · 6인 테이블</li>
+                    <li>스파 · 화장실 2</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3>준비된 비품</h3>
+                  <div class="chips">
+                    <span>수건</span><span>샴푸·린스</span><span>바디워시</span><span>비누</span><span>칫솔·치약</span><span>드라이기</span><span>빗</span><span>냉장고</span><span>TV</span><span>Wi-Fi</span>
+                  </div>
+                </div>
+                <p class="small">스파에서 쓸 개인 세면도구나 잠옷은 챙겨 오시면 좋아요.</p>
+              </div>
+            </details>
           </div>
         </li>
       </ol>
@@ -190,16 +287,33 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
         <li class="stop first">
           <div class="dot"></div>
           <div class="body">
-            <div class="when">오전</div>
-            <div class="what">DH퍼스티어 게스트하우스 출발</div>
+            <div class="when">오전 11시 전 체크아웃</div>
+            <div class="what">THE H 퍼스티어 아이파크 출발</div>
           </div>
         </li>
         <li class="move" aria-label="차로 약 15분 이동"><div class="rail"></div><div class="txt">차로 약 15분</div></li>
         <li class="stop">
           <div class="dot"></div>
           <div class="body">
-            <div class="when">나들이</div>
-            <div class="what"><a href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%EB%8C%80%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener">과천 서울대공원</a></div>
+            <div class="when">단풍 나들이</div>
+            <details>
+              <summary><span>과천 서울대공원</span><span class="chev" aria-hidden="true"></span></summary>
+              <div class="panel">
+                <p>서울대공원 단풍은 <strong>10월 하순부터 11월 초</strong>가 절정이에요. 딱 우리 가는 날이에요.</p>
+                <div>
+                  <h3>추천 코스</h3>
+                  <ul>
+                    <li><strong>호숫가 둘레길</strong> · 약 2.8km, 1시간. 호수와 관악산·청계산이 함께 보여요. 어르신, 아이들과 걷기 좋아요.</li>
+                    <li><strong>코끼리열차</strong> · 안내소, 동물원, 서울랜드를 도는 순환 열차예요. 걷기 힘들면 타고 이동해요.</li>
+                    <li><strong>산림욕장길</strong> · 약 7km, 2시간 30분. 체력 되는 사람만!</li>
+                  </ul>
+                </div>
+                <div class="links">
+                  <a class="btn" href="https://m.blog.naver.com/skylift66/224060309513" target="_blank" rel="noopener">단풍 사진 보기 (블로그)</a>
+                  <a class="btn" href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%EB%8C%80%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener">지도 보기</a>
+                </div>
+              </div>
+            </details>
           </div>
         </li>
       </ol>
