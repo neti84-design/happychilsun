@@ -165,28 +165,30 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
 .rs-stat span { color: var(--muted); }
 .rs-status { font-size: 12.5px; color: var(--muted); }
 .rs-status.err { color: var(--seal); }
-.rs-list { display: flex; flex-direction: column; gap: 18px; margin-bottom: 18px; }
+.rs-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
 .rs-fam { background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-.rs-fam-head { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.rs-fam-head { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 12px; border-bottom: 1px solid var(--line); }
 .rs-fam-head strong { font-family: var(--display); font-size: 16px; }
+.rs-fam-head strong em { font-style: normal; font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 400; }
 .rs-fam-head span { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.rs-person { padding: 12px 14px; border-top: 1px dashed var(--line); display: flex; flex-direction: column; gap: 10px; }
+.rs-person { padding: 8px 12px; border-top: 1px dashed var(--line); }
 .rs-person:first-of-type { border-top: 0; }
-.rs-toggle { display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 17px; min-height: 32px; }
-.rs-toggle input { width: 24px; height: 24px; accent-color: var(--indigo); margin: 0; flex: none; }
-.rs-toggle .host { font-size: 12px; color: var(--muted); }
-.rs-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.rs-fields .car { grid-column: 1 / -1; }
-.rs-fields label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--muted); min-width: 0; }
+.rs-line { display: flex; align-items: center; gap: 8px; min-height: 34px; }
+.rs-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 16px; flex: none; min-width: 60px; }
+.rs-toggle input { width: 22px; height: 22px; accent-color: var(--indigo); margin: 0; flex: none; }
+.rs-fields { display: flex; gap: 4px; flex: 1 1 0; min-width: 0; flex-wrap: nowrap; }
 .rs-fields select, .rs-fields input {
-  font: inherit; font-size: 15px; color: var(--ink); background: var(--paper);
-  border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; min-width: 0;
+  font: inherit; font-size: 13px; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; height: 30px; min-width: 0;
 }
+.rs-fields select { flex: 0 1 70px; width: 70px; padding: 4px 2px 4px 6px; }
+.rs-fields input { flex: 0 1 86px; width: 86px; }
 .rs-fields select:focus, .rs-fields input:focus, .rs-toggle input:focus-visible { outline: 2px solid var(--indigo); outline-offset: 1px; }
 .rs-person.off .rs-fields { display: none; }
-.rs-saved { font-size: 12px; color: var(--indigo); }
+.rs-saved { font-size: 11.5px; color: var(--indigo); margin-top: 2px; }
 .rs-saved:empty { display: none; }
 .rs-cars { margin: 0; }
+.rs-fields [hidden] { display: none; }
 </style>
 
 </head>
@@ -366,7 +368,7 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
 
   <section class="rsvp" id="rsvp">
     <h2>참석 체크</h2>
-    <p class="small" style="text-align:center;margin:-6px 0 16px">자기 이름을 눌러 체크하고, 도착 시간과 오는 방법을 골라 주세요.<br>적는 즉시 저장되고, 가족 모두에게 똑같이 보여요.</p>
+    <p class="small" style="text-align:center;margin:-6px 0 16px">자기 이름을 체크하고, 옆에 도착 시간과 오는 방법을 골라 주세요.<br>적는 즉시 저장되고, 가족 모두에게 똑같이 보여요.</p>
 
     <div class="rs-summary" aria-live="polite">
       <div class="rs-stat"><strong id="rs-count">0</strong><span>/ <span id="rs-total">16</span>명 참석</span></div>
@@ -412,13 +414,13 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
 
   var FAMILIES = [
     { name: "주인공", people: [["k1", "근희"], ["k2", "영숙"]] },
-    { name: "첫째네", host: true, people: [["a1", "영인"], ["a2", "정윤"], ["a3", "정환"], ["a4", "민서"]] },
-    { name: "둘째네", people: [["b1", "승태"], ["b2", "혜윤"], ["b3", "은수"], ["b4", "은채"]] },
-    { name: "셋째네", people: [["c1", "정원"], ["c2", "혜지"], ["c3", "지호"], ["c4", "은호"]] },
-    { name: "넷째네", people: [["d1", "용목"], ["d2", "그녀"]] }
+    { name: "첫째네", sub: "맞이하는 집", people: [["a1", "영인"], ["a2", "정윤"], ["a3", "정환"], ["a4", "민소"]] },
+    { name: "둘째네", sub: "세종", people: [["b1", "승태"], ["b2", "혜윤"], ["b3", "은수"], ["b4", "은채"]] },
+    { name: "셋째네", sub: "상주", people: [["c1", "정원"], ["c2", "혜지"], ["c3", "지호"], ["c4", "은호"]] },
+    { name: "넷째네", sub: "서울", people: [["d1", "용목"], ["d2", "그녀"]] }
   ];
-  var TIMES = ["", "오후 2시", "오후 2시 반", "오후 3시", "오후 3시 반", "오후 4시", "오후 4시 반", "오후 5시", "오후 5시 반", "오후 6시", "오후 6시 반", "식당으로 바로 (7시)", "집에 있어요"];
-  var METHODS = ["", "자차", "KTX·기차", "고속버스", "같이 타고 옴", "기타"];
+  var TIMES = ["", "2시", "2시반", "3시", "3시반", "4시", "4시반", "5시", "5시반", "6시", "6시반", "식당 직행", "집에 있음"];
+  var METHODS = ["", "자차", "기차", "버스", "동승", "기타"];
 
   var state = {};
   var listEl = document.getElementById("rs-list");
@@ -447,7 +449,7 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
   FAMILIES.forEach(function (f) {
     var box = el("div", { "class": "rs-fam" });
     var head = el("div", { "class": "rs-fam-head" });
-    head.appendChild(el("strong", null, f.name));
+    var hn = el("strong", null, f.name); if (f.sub) hn.appendChild(el("em", null, " · " + f.sub)); head.appendChild(hn);
     var cnt = el("span"); head.appendChild(cnt);
     box.appendChild(head);
     f.cnt = cnt;
@@ -458,23 +460,21 @@ a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-
       var cb = el("input", { type: "checkbox", id: "rs-" + id });
       lab.appendChild(cb);
       lab.appendChild(el("span", null, name));
-      if (f.host) lab.appendChild(el("span", { "class": "host" }, "맞이하는 집"));
-      row.appendChild(lab);
+      var line = el("div", { "class": "rs-line" });
+      line.appendChild(lab);
+      row.appendChild(line);
 
       var fields = el("div", { "class": "rs-fields" });
-      var l1 = el("label", { "for": "rs-" + id + "-t" }, "도착 시간");
-      var t = el("select", { id: "rs-" + id + "-t" }); options(t, TIMES, "선택"); l1.appendChild(t);
-      var l2 = el("label", { "for": "rs-" + id + "-m" }, "오는 방법");
-      var m = el("select", { id: "rs-" + id + "-m" }); options(m, METHODS, "선택"); l2.appendChild(m);
-      var l3 = el("label", { "class": "car", "for": "rs-" + id + "-c" }, "차량번호 (자차일 때)");
-      var c = el("input", { id: "rs-" + id + "-c", type: "text", placeholder: "예: 12가 3456", autocomplete: "off", maxlength: "20" });
-      l3.appendChild(c);
-      fields.appendChild(l1); fields.appendChild(l2); fields.appendChild(l3);
-      row.appendChild(fields);
+      var t = el("select", { id: "rs-" + id + "-t", "aria-label": name + " 도착 시간" }); options(t, TIMES, "도착");
+      var m = el("select", { id: "rs-" + id + "-m", "aria-label": name + " 오는 방법" }); options(m, METHODS, "방법");
+      var c = el("input", { id: "rs-" + id + "-c", type: "text", placeholder: "차량번호", "aria-label": name + " 차량번호", autocomplete: "off", maxlength: "20" });
+      var l3 = c;
+      fields.appendChild(t); fields.appendChild(m); fields.appendChild(c);
+      line.appendChild(fields);
       var saved = el("div", { "class": "rs-saved" }); row.appendChild(saved);
       box.appendChild(row);
 
-      rows[id] = { row: row, cb: cb, t: t, m: m, c: c, carLabel: l3, saved: saved, name: name, fam: f };
+      rows[id] = { row: row, cb: cb, t: t, m: m, c: c, carLabel: c, saved: saved, name: name, fam: f };
 
       cb.addEventListener("change", function () { save(id, { attend: cb.checked }); });
       t.addEventListener("change", function () { save(id, { arrival: t.value }); });
